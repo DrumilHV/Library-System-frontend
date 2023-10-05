@@ -5,6 +5,7 @@ import Navbar from "./Navbar";
 
 import Link from "next/link";
 import { useRouter } from "next/router";
+import axios from "axios";
 
 const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_SERVER;
 
@@ -19,7 +20,9 @@ const Book = ({ book, sd, showBtn }) => {
   const buttonStyle = {
     margin: "2%",
   };
-  const handelDelete = () => {};
+  const handelDelete = async () => {
+    const response = await axios.delete(`${BACKEND_URL}/delete/${book._id}`);
+  };
   return (
     <Stack direction={"row"}>
       <Box
@@ -35,15 +38,17 @@ const Book = ({ book, sd, showBtn }) => {
         }}
       >
         <Stack direction={"row"}>
-          <Image
-            src={book.thumbnailurl || noImage}
-            height={300}
-            width={200}
-            style={{ border: "none", borderRadius: "15px" }}
-            objectFit="cover"
-            overflow="hidden"
-            alt={book.title}
-          />
+          {book.thumbnailurl && (
+            <Image
+              src={book?.thumbnailurl || noImage}
+              height={300}
+              width={200}
+              style={{ border: "none", borderRadius: "15px" }}
+              objectFit="cover"
+              overflow="hidden"
+              alt={book.title}
+            />
+          )}
           <Stack direction={"column"} sx={{ margin: "2%", width: "80%" }}>
             <Typography fontWeight={"bold"}>{book.title}</Typography>
             <Typography>
@@ -75,7 +80,12 @@ const Book = ({ book, sd, showBtn }) => {
                   </Button>
                 </Link>
                 <Link href={`/delete/${book._id.toString()}`}>
-                  <Button variant="contained" color="error" sx={buttonStyle}>
+                  <Button
+                    variant="contained"
+                    color="error"
+                    sx={buttonStyle}
+                    onClick={handelDelete}
+                  >
                     <Typography fontWeight={"bold"}>DELETE</Typography>
                   </Button>
                 </Link>
