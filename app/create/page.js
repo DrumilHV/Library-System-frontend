@@ -83,15 +83,7 @@ const Create = ({ params: { id } }) => {
         }}
       >
         <Stack direction={"row"}>
-          <Box sx={{ margin: "2%" }}>
-            <Image
-              src={book.thumbnailurl}
-              height={300}
-              width={200}
-              style={{ objectFit: "cover", overflow: "hidden" }}
-              alt={book.title}
-            />
-          </Box>
+          <Box sx={{ margin: "2%" }}></Box>
           <Stack direction={"column"}>
             <Typography fontWeight={"bold"}>Title</Typography>
             <textarea

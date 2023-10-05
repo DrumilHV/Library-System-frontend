@@ -80,6 +80,7 @@ import { CircularProgress, Pagination } from "@mui/material";
 import axios from "axios";
 import { useSearchParams } from "next/navigation";
 import Navbar from "../components/Navbar";
+import Link from "next/link";
 
 const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_SERVER;
 
@@ -115,12 +116,19 @@ const Page = () => {
   return (
     <>
       <Navbar />
-      {bookData === undefined || bookData.length === 0 ? (
+      {bookData === undefined ? (
         <CircularProgress disableShrink sx={{ margin: "50%" }} />
-      ) : (
+      ) : bookData.length > 0 ? (
         bookData.map((book, index) => (
-          <Book book={book} key={book._id} sd={true} showBtn={true} />
+          <Link
+            href={`/book/bookDetails/${book._id}`}
+            style={{ textDecoration: "none", color: "black" }}
+          >
+            <Book book={book} key={book._id} sd={true} showBtn={true} />
+          </Link>
         ))
+      ) : (
+        <h1>No Such Book found!</h1>
       )}
 
       <Pagination
