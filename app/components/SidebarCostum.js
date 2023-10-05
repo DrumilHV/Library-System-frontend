@@ -166,22 +166,22 @@ function App({
       </List>
       <Divider />
 
-      <button
+      <Button
         onClick={getQueryResult}
         style={{ border: "none", background: "none", padding: "5%" }}
       >
         <Button variant="contained">Search</Button>
-      </button>
-      <button
+      </Button>
+      <Button
         onClick={CreateBook}
         style={{ border: "none", background: "none", padding: "5%" }}
       >
         <Button variant="contained" color="info">
           Create
         </Button>
-      </button>
+      </Button>
 
-      <button
+      <Button
         onClick={async () => {
           try {
             const response = await axios.get(
@@ -215,8 +215,8 @@ function App({
         <Button variant="contained" color="success">
           Export Data as JSON
         </Button>
-      </button>
-      <button
+      </Button>
+      <Button
         onClick={async () => {
           try {
             const response = await axios.get(`${BACKEND_URL}/export-csv-data`, {
@@ -244,7 +244,7 @@ function App({
         <Button variant="contained" color="success">
           Export Data as CSV
         </Button>
-      </button>
+      </Button>
 
       <Input
         id="csv-file-input" // Unique ID for the CSV file input

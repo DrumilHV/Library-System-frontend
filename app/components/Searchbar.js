@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
@@ -9,6 +9,9 @@ import { bookData } from "../dummData";
 const SearchBar = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const router = useRouter();
+  useEffect(() => {
+    setSearchTerm("");
+  }, []);
 
   const handelSubmit = (e) => {
     e.preventDefault();

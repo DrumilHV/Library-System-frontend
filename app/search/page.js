@@ -79,6 +79,7 @@ import Book from "../components/Book";
 import { CircularProgress, Pagination } from "@mui/material";
 import axios from "axios";
 import { useSearchParams } from "next/navigation";
+import Navbar from "../components/Navbar";
 
 const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_SERVER;
 
@@ -101,7 +102,7 @@ const Page = () => {
     const fetchData = async () => {
       const response = await axios.get(url, { responseType: "json" });
       setBookData(response.data);
-      setTotalPage(Math.ceil(response.data.length / perPage));
+      setTotalPage(Math.ceil(response.data.length / perPage) || 5);
     };
 
     fetchData();
@@ -113,13 +114,15 @@ const Page = () => {
 
   return (
     <>
+      <Navbar />
       {bookData === undefined || bookData.length === 0 ? (
-        <CircularProgress disableShrink />
+        <CircularProgress disableShrink sx={{ margin: "50%" }} />
       ) : (
         bookData.map((book, index) => (
           <Book book={book} key={book._id} sd={true} showBtn={true} />
         ))
       )}
+
       <Pagination
         count={totalPage}
         page={page}

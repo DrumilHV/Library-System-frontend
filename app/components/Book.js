@@ -14,15 +14,14 @@ const Book = ({ book, sd, showBtn }) => {
   //   event.preventDefault();
   //   router.push(`/update/${book._id.toString()}`);
   // };
+  const noImage = "/noImage.jpg";
+
   const buttonStyle = {
     margin: "2%",
   };
   const handelDelete = () => {};
   return (
     <Stack direction={"row"}>
-      <Box>
-        <Navbar />
-      </Box>
       <Box
         sx={{
           margin: "1%",
@@ -37,7 +36,7 @@ const Book = ({ book, sd, showBtn }) => {
       >
         <Stack direction={"row"}>
           <Image
-            src={book.thumbnailurl}
+            src={book.thumbnailurl || noImage}
             height={300}
             width={200}
             style={{ border: "none", borderRadius: "15px" }}

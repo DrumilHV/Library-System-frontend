@@ -3,6 +3,7 @@ import { AppBar, Toolbar, Typography, Stack, Box } from "@mui/material";
 import Searchbar from "./Searchbar";
 import SidebarCostum from "./SidebarCostum";
 import AccordMenu from "./AccordMenu";
+import Link from "next/link";
 
 const Navbar = () => {
   return (
@@ -14,9 +15,9 @@ const Navbar = () => {
             // justifyContent="space-between" // Align items horizontally
             alignItems="left" // Align items vertically
           >
-            <a href="/" style={{ textDecoration: "none", color: "white" }}>
+            <Link href="/" style={{ textDecoration: "none", color: "white" }}>
               <Typography fontWeight={"bold"}>Libsys</Typography>
-            </a>
+            </Link>
             <Box
               sx={{
                 position: "absolute",
